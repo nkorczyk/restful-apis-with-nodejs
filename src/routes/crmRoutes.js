@@ -1,5 +1,6 @@
 import {
   addNewContact,
+  deleteContact,
   getContacts,
   getContactWithID,
   updateContact,
@@ -14,13 +15,21 @@ const routes = app => {
       console.log(`Request type ${req.method}`);
       next();
     }, getContacts)
+
+    // Post endpoint
     .post(addNewContact);
 
   app
     .route('/contact/:contactID')
+
+    // get a specyfic contact
     .get(getContactWithID)
+
+    // update specyfic contact
     .put(updateContact)
-    .delete((req, res) => res.send('DELETE request successful!'));
+
+    // delete specyfic contact
+    .delete(deleteContact);
 };
 
 export default routes;
